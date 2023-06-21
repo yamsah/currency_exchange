@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
+*{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+}
+.sidebar {
+  position: fixed;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background: #042331;
+  transition: all .5s ease;
+}
+.sidebar header {
+  font-size: 22px;
+  color: white;
+  line-height: 70px;
+  text-align: center;
+  background: #063146;
+  user-select: none;
+}
+.sidebar ul a{
+  display: block;
+  height: 100%;
+  width: 100%;
+  line-height: 65px;
+  font-size: 20px;
+  color: white;
+  padding-left: 40px;
+  box-sizing: border-box;
+  border-bottom: 1px solid black;
+  border-top: 1px solid rgba(255,255,255,.1);
+  transition: .4s;
+}
+ul li:hover a{
+  padding-left: 50px;
+}
+.sidebar ul a i{
+  margin-right: 16px;
+}
+#check{
+  display: none;
+}
+label #btn,label #cancel{
+  position: absolute;
+  background: #042331;
+  border-radius: 3px;
+  cursor: pointer;
+}
+label #btn{
+  left: 40px;
+  top: 25px;
+  font-size: 35px;
+  color: white;
+  padding: 6px 12px;
+  transition: all .5s;
+}
+label #cancel{
+  z-index: 1111;
+  left: -195px;
+  top: 17px;
+  font-size: 30px;
+  color: #0a5275;
+  padding: 4px 9px;
+  transition: all .5s ease;
+}
+#check:checked ~ .sidebar{
+  left: 0;
+}
+#check:checked ~ label #btn{
+  left: 250px;
+  opacity: 0;
+  pointer-events: none;
+}
+#check:checked ~ label #cancel{
+  left: 195px;
+}
+#check:checked ~ section{
+  margin-left: 250px;
+}
+section{
+  background: url(/image/photo.jpg) no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  transition: all .5s;
+}
+
+
+
+
+@media(max-width:600px)
+{
+    body {
+        background-color: rgb(43, 134, 226);
+    }
+}
+@media(min-width:700px)
+{
+    body {
+        background-color: salmon;
+    }
+}
+
+
+
+.main {
+    border: 1px solid black;
+    text-align: center;
+    width: 30%;
+    height: 20rem;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    display:inline-block;
+    /* flex-wrap: wrap;
+    justify-content: center; */
+    
+}
+.top {
+    text-align: center;
+}
+
+.login {
+    background-color: rgb(145, 17, 38);
+    text-decoration: white;
+    border-color: rgb(145, 17, 38);
+    border-right-style: none;
+    color: white;
+    width: 100px;
+    height: 25px;
+}
+.signup {
+    border-left-style: none;
+    width: 100px;
+    height: 25px;
+}
+.forget {
+    text-decoration: none;
+    color: rgb(206, 55, 80);
+    position: relative;
+    right: 48px;
+    top: 5px;
+    
+    
+    
+
+}
+.login1 {
+    width: 200px;
+    height: 25px;
+    color: white;
+    background-color: rgb(136, 39, 55);
+
+}
+input {
+    width: 200px;
+    height: 20px;
+
+}
+.signow {
+    color: rgb(182, 47, 69);
+    text-decoration: none;
+
+}
+.homeb {
+    
+    background-color: saddlebrown;
+    color: white;
+     height: 40px;
+     width: 100px;
+    
+}
+
+#info {
+    background-color: aliceblue;
+    color:#ffff;
+    width: 100%;
+}
+.script-div{
+    display: block;
+    align-items: center;
+    justify-content: space-evenly;
+    width:50%;
+    background:transparent;
+    background-color:burlywood;
+    position: absolute;
+    opacity: 0.5;
+    left:2px;
+    margin-top: 70px;
+}

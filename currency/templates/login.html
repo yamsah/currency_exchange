@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <input type="checkbox" id="check">
+    <label for="check">
+      <i class="fas fa-bars" id="btn"></i>
+      <i class="fas fa-times" id="cancel"></i>
+    </label>
+    <div class="sidebar">
+      <header>My App</header>
+        <ul>
+           <li><a href="/"><i class="fas fa-qrcode"></i>Dashboard</a></li>
+           <li><a href="registration"><i class="fas fa-link"></i>Registered</a></li>
+           <li><a href="login"><i class="fas fa-stream"></i>Login</a></li>
+           <li><a href="/"><i class="far fa-question-circle"></i>About</a></li>
+           <li><a href="/"><i class="fas fa-sliders-h"></i>Services</a></li>
+           <li><a href="/"><i class="far fa-envelope"></i>Contact</a></li>
+
+        </ul>
+    </div>
+    <div class="info"></div><br><br>
+
+    <div class="top">
+
+
+        <div class="main"><br><br>
+        
+            <h1>Login Form</h1>
+            <form id="form">
+                <!-- <button class="login">Login</button><button class="signup">Signup</button><br><br> -->
+                <input type="text" id="name" name="User name" value="" placeholder="User name"><br><br>
+                <input type="text" id="password" name="Password" value="" placeholder="Password"><br>
+                <a class="forget" href="Forgot password">Forgot password?</a><br><br>
+                <!-- <button type="submit" class="login1">Login</button> -->
+                <input type="submit" id="submit" value="submit">
+                <h5>Not a member? <a class="signow" href="registration"> Register here</a></h5>
+               
+            </form>
+             
+        </div>
+        
+        <br>
+        
+       
+     
+        
+
+
+
+    </div>
+    
+</body>
+</html>
