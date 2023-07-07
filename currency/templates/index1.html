@@ -12,10 +12,12 @@
     <img src="{% static 'img/money.png' %}" alt="" class="money-img" />
     <h1>Exchange Rate Calculator</h1>
     <p>Choose the currency and the amounts to get the exchange rate</p>
-
+    
     <div class="container">
+      <form class="" method="post" action="save_transaction">
+      {% csrf_token %}
       <div class="currency">
-        <select id="currency-one">
+        <select id="currency-one" name="currency_one">
           <option value="AED">AED</option>
           <option value="ARS">ARS</option>
           <option value="AUD">AUD</option>
@@ -68,19 +70,14 @@
           <option value="UYU">UYU</option>
           <option value="VND">VND</option>
           <option value="ZAR">ZAR</option>
+          <option value="TZS">TZS</option>
         </select>
-        <input type="number" id="amount-one" placeholder="0" value="1" />
+        <input type="number" id="amount-one" placeholder="0" value="1" name="amount_one" />
       </div>
-
-      <div class="swap-rate-container">
-        <button class="btn" id="swap">
-          Swap
-        </button>
-        <div class="rate" id="rate"></div>
-      </div>
-
+      <button id="save-button">Save</button>
+      
       <div class="currency">
-        <select id="currency-two">
+        <select id="currency-two" name="currency_two">
           <option value="AED">AED</option>
           <option value="ARS">ARS</option>
           <option value="AUD">AUD</option>
@@ -133,9 +130,138 @@
           <option value="UYU">UYU</option>
           <option value="VND">VND</option>
           <option value="ZAR">ZAR</option>
+          <option value="TZS">TZS</option>
         </select>
-        <input type="number" id="amount-two" placeholder="0" />
+        <input type="number" id="amount-two" placeholder="0" name="amount_two" />
       </div>
+
+
+      <!-- <div class="currency">
+        <select id="currency-one" name="currency_one">
+          <option value="AED" {% if currency_one == "AED" %}selected{% endif %}>AED</option>
+          <option value="ARS" {% if currency_one == "ARS" %}selected{% endif %}>ARS</option>
+          <option value="AUD" {% if currency_one == "AUD" %}selected{% endif %}>AUD</option>
+          <option value="BGN" {% if currency_one == "BGN" %}selected{% endif %}>BGN</option>
+          <option value="BRL" {% if currency_one == "BRL" %}selected{% endif %}>BRL</option>
+          <option value="BSD" {% if currency_one == "BSD" %}selected{% endif %}>BSD</option>
+          <option value="CAD" {% if currency_one == "CAD" %}selected{% endif %}>CAD</option>
+          <option value="CHF" {% if currency_one == "CHF" %}selected{% endif %}>CHF</option>
+          <option value="CLP" {% if currency_one == "CLP" %}selected{% endif %}>CLP</option>
+          <option value="CNY" {% if currency_one == "CNY" %}selected{% endif %}>CNY</option>
+          <option value="COP" {% if currency_one == "COP" %}selected{% endif %}>COP</option>
+          <option value="CZK" {% if currency_one == "CZK" %}selected{% endif %}>CZK</option>
+          <option value="DKK" {% if currency_one == "DKK" %}selected{% endif %}>DKK</option>
+          <option value="DOP" {% if currency_one == "DOP" %}selected{% endif %}>DOP</option>
+          <option value="EGP" {% if currency_one == "EGP" %}selected{% endif %}>EGP</option>
+          <option value="EUR" {% if currency_one == "EUR" %}selected{% endif %}>EUR</option>
+          <option value="FJD" {% if currency_one == "FJD" %}selected{% endif %}>FJD</option>
+          <option value="GBP" {% if currency_one == "GBP" %}selected{% endif %}>GBP</option>
+          <option value="GTQ" {% if currency_one == "GTQ" %}selected{% endif %}>GTQ</option>
+          <option value="HKD" {% if currency_one == "HKD" %}selected{% endif %}>HKD</option>
+          <option value="HRK" {% if currency_one == "HRK" %}selected{% endif %}>HRK</option>
+          <option value="HUF" {% if currency_one == "HUF" %}selected{% endif %}>HUF</option>
+          <option value="IDR" {% if currency_one == "IDR" %}selected{% endif %}>IDR</option>
+          <option value="ILS" {% if currency_one == "ILS" %}selected{% endif %}>ILS</option>
+          <option value="INR" {% if currency_one == "INR" %}selected{% endif %}>INR</option>
+          <option value="ISK" {% if currency_one == "ISK" %}selected{% endif %}>ISK</option>
+          <option value="JPY" {% if currency_one == "JPY" %}selected{% endif %}>JPY</option>
+          <option value="KRW" {% if currency_one == "KRW" %}selected{% endif %}>KRW</option>
+          <option value="KZT" {% if currency_one == "KZT" %}selected{% endif %}>KZT</option>
+          <option value="MXN" {% if currency_one == "MXN" %}selected{% endif %}>MXN</option>
+          <option value="MYR" {% if currency_one == "MYR" %}selected{% endif %}>MYR</option>
+          <option value="NOK" {% if currency_one == "NOK" %}selected{% endif %}>NOK</option>
+          <option value="NZD" {% if currency_one == "NZD" %}selected{% endif %}>NZD</option>
+          <option value="PAB" {% if currency_one == "PAB" %}selected{% endif %}>PAB</option>
+          <option value="PEN" {% if currency_one == "PEN" %}selected{% endif %}>PEN</option>
+          <option value="PHP" {% if currency_one == "PHP" %}selected{% endif %}>PHP</option>
+          <option value="PKR" {% if currency_one == "PKR" %}selected{% endif %}>PKR</option>
+          <option value="PLN" {% if currency_one == "PLN" %}selected{% endif %}>PLN</option>
+          <option value="PYG" {% if currency_one == "PYG" %}selected{% endif %}>PYG</option>
+          <option value="RON" {% if currency_one == "RON" %}selected{% endif %}>RON</option>
+          <option value="RUB" {% if currency_one == "RUB" %}selected{% endif %}>RUB</option>
+          <option value="SAR" {% if currency_one == "SAR" %}selected{% endif %}>SAR</option>
+          <option value="SEK" {% if currency_one == "SEK" %}selected{% endif %}>SEK</option>
+          <option value="SGD" {% if currency_one == "SGD" %}selected{% endif %}>SGD</option>
+          <option value="THB" {% if currency_one == "THB" %}selected{% endif %}>THB</option>
+          <option value="TRY" {% if currency_one == "TRY" %}selected{% endif %}>TRY</option>
+          <option value="TWD" {% if currency_one == "TWD" %}selected{% endif %}>TWD</option>
+          <option value="UAH" {% if currency_one == "UAH" %}selected{% endif %}>UAH</option>
+          <option value="USD" {% if currency_one == "USD" %}selected{% endif %}>USD</option>
+          <option value="UYU" {% if currency_one == "UYU" %}selected{% endif %}>UYU</option>
+          <option value="VND" {% if currency_one == "VND" %}selected{% endif %}>VND</option>
+          <option value="ZAR" {% if currency_one == "ZAR" %}selected{% endif %}>ZAR</option>
+        </select>
+        <input type="number" id="amount-one" placeholder="Amount" name="amount_one">
+      </div> -->
+      
+      
+      <!-- <div class="currency">
+        <select id="currency-two" name="currency_two">
+          <option value="AED" {% if currency_two == "AED" %}selected{% endif %}>AED</option>
+          <option value="ARS" {% if currency_two == "ARS" %}selected{% endif %}>ARS</option>
+          <option value="AUD" {% if currency_two == "AUD" %}selected{% endif %}>AUD</option>
+          <option value="BGN" {% if currency_two == "BGN" %}selected{% endif %}>BGN</option>
+          <option value="BRL" {% if currency_two == "BRL" %}selected{% endif %}>BRL</option>
+          <option value="BSD" {% if currency_two == "BSD" %}selected{% endif %}>BSD</option>
+          <option value="CAD" {% if currency_two == "CAD" %}selected{% endif %}>CAD</option>
+          <option value="CHF" {% if currency_two == "CHF" %}selected{% endif %}>CHF</option>
+          <option value="CLP" {% if currency_two == "CLP" %}selected{% endif %}>CLP</option>
+          <option value="CNY" {% if currency_two == "CNY" %}selected{% endif %}>CNY</option>
+          <option value="COP" {% if currency_two == "COP" %}selected{% endif %}>COP</option>
+          <option value="CZK" {% if currency_two == "CZK" %}selected{% endif %}>CZK</option>
+          <option value="DKK" {% if currency_two == "DKK" %}selected{% endif %}>DKK</option>
+          <option value="DOP" {% if currency_two == "DOP" %}selected{% endif %}>DOP</option>
+          <option value="EGP" {% if currency_two == "EGP" %}selected{% endif %}>EGP</option>
+          <option value="EUR" {% if currency_two == "EUR" %}selected{% endif %}>EUR</option>
+          <option value="FJD" {% if currency_two == "FJD" %}selected{% endif %}>FJD</option>
+          <option value="GBP" {% if currency_two == "GBP" %}selected{% endif %}>GBP</option>
+          <option value="GTQ" {% if currency_two == "GTQ" %}selected{% endif %}>GTQ</option>
+          <option value="HKD" {% if currency_two == "HKD" %}selected{% endif %}>HKD</option>
+          <option value="HRK" {% if currency_two == "HRK" %}selected{% endif %}>HRK</option>
+          <option value="HUF" {% if currency_two == "HUF" %}selected{% endif %}>HUF</option>
+          <option value="IDR" {% if currency_two == "IDR" %}selected{% endif %}>IDR</option>
+          <option value="ILS" {% if currency_two == "ILS" %}selected{% endif %}>ILS</option>
+          <option value="INR" {% if currency_two == "INR" %}selected{% endif %}>INR</option>
+          <option value="ISK" {% if currency_two == "ISK" %}selected{% endif %}>ISK</option>
+          <option value="JPY" {% if currency_two == "JPY" %}selected{% endif %}>JPY</option>
+          <option value="KRW" {% if currency_two == "KRW" %}selected{% endif %}>KRW</option>
+          <option value="KZT" {% if currency_two == "KZT" %}selected{% endif %}>KZT</option>
+          <option value="MXN" {% if currency_two == "MXN" %}selected{% endif %}>MXN</option>
+          <option value="MYR" {% if currency_two == "MYR" %}selected{% endif %}>MYR</option>
+          <option value="NOK" {% if currency_two == "NOK" %}selected{% endif %}>NOK</option>
+          <option value="NZD" {% if currency_two == "NZD" %}selected{% endif %}>NZD</option>
+          <option value="PAB" {% if currency_two == "PAB" %}selected{% endif %}>PAB</option>
+          <option value="PEN" {% if currency_two == "PEN" %}selected{% endif %}>PEN</option>
+          <option value="PHP" {% if currency_two == "PHP" %}selected{% endif %}>PHP</option>
+          <option value="PKR" {% if currency_two == "PKR" %}selected{% endif %}>PKR</option>
+          <option value="PLN" {% if currency_two == "PLN" %}selected{% endif %}>PLN</option>
+          <option value="PYG" {% if currency_two == "PYG" %}selected{% endif %}>PYG</option>
+          <option value="RON" {% if currency_two == "RON" %}selected{% endif %}>RON</option>
+          <option value="RUB" {% if currency_two == "RUB" %}selected{% endif %}>RUB</option>
+          <option value="SAR" {% if currency_two == "SAR" %}selected{% endif %}>SAR</option>
+          <option value="SEK" {% if currency_two == "SEK" %}selected{% endif %}>SEK</option>
+          <option value="SGD" {% if currency_two == "SGD" %}selected{% endif %}>SGD</option>
+          <option value="THB" {% if currency_two == "THB" %}selected{% endif %}>THB</option>
+          <option value="TRY" {% if currency_two == "TRY" %}selected{% endif %}>TRY</option>
+          <option value="TWD" {% if currency_two == "TWD" %}selected{% endif %}>TWD</option>
+          <option value="UAH" {% if currency_two == "UAH" %}selected{% endif %}>UAH</option>
+          <option value="USD" {% if currency_two == "USD" %}selected{% endif %}>USD</option>
+          <option value="UYU" {% if currency_two == "UYU" %}selected{% endif %}>UYU</option>
+          <option value="VND" {% if currency_two == "VND" %}selected{% endif %}>VND</option>
+          <option value="ZAR" {% if currency_two == "ZAR" %}selected{% endif %}>ZAR</option>
+        </select>
+        <input type="number" id="amount-two" placeholder="Amount" name="amount_two">
+      </div> -->
+      
+      
+      </form>
+      <div class="swap-rate-container">
+        <button class="btn" id="swap">
+          Swap
+        </button>
+        <div class="rate" id="rate"></div>
+      </div>
+      
     </div>
 
     <script src="{% static 'javascript/index1.js' %}"></script>

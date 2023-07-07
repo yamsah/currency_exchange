@@ -8,6 +8,7 @@ const swap = document.getElementById('swap');
 
 // Fetch exchange rates and update the DOM
 function caclulate() {
+  console.log("he");
   const currency_one = currencyEl_one.value;
   const currency_two = currencyEl_two.value;
 

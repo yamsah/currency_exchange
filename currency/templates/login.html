@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css' %}"/>
     <title>Document</title>
 </head>
 <body>
@@ -34,10 +35,12 @@
         <div class="main"><br><br>
         
             <h1>Login Form</h1>
-            <form id="form">
+            <form id="form" action="login" method="post">
+                {% csrf_token %}
+
                 <!-- <button class="login">Login</button><button class="signup">Signup</button><br><br> -->
-                <input type="text" id="name" name="User name" value="" placeholder="User name"><br><br>
-                <input type="text" id="password" name="Password" value="" placeholder="Password"><br>
+                <input type="text" id="name" name="username" value="" placeholder="username"><br><br>
+                <input type="password" id="password" name="password" value="" placeholder="password"><br>
                 <a class="forget" href="Forgot password">Forgot password?</a><br><br>
                 <!-- <button type="submit" class="login1">Login</button> -->
                 <input type="submit" id="submit" value="submit">
@@ -49,13 +52,12 @@
         
         <br>
         
-       
-     
-        
-
-
-
     </div>
+    <div>
+        {% for message in messages %}
+        <h3> {{message}} </h3>
+        {% endfor %}
+      </div>
     
 </body>
 </html>
